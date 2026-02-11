@@ -1,13 +1,16 @@
 import { motion } from 'framer-motion';
 import { ChevronDown, MapPin, Sparkles } from 'lucide-react';
+import { useAppContext } from '../context/AppContext';
 
 export const Hero = () => {
+    const { t } = useAppContext();
+
     return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-white dark:bg-gray-950 transition-colors duration-300">
             {/* Background Shapes */}
             <div className="absolute inset-0 -z-10">
-                <div className="absolute top-1/4 -left-20 w-72 h-72 bg-blue-400/20 rounded-full blur-3xl animate-pulse" />
-                <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-indigo-400/20 rounded-full blur-3xl animate-pulse delay-700" />
+                <div className="absolute top-1/4 -left-20 w-72 h-72 bg-blue-400/20 dark:bg-blue-600/10 rounded-full blur-3xl animate-pulse" />
+                <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-indigo-400/20 dark:bg-indigo-600/10 rounded-full blur-3xl animate-pulse delay-700" />
             </div>
 
             <div className="max-w-7xl mx-auto px-6 text-center">
@@ -15,21 +18,21 @@ export const Hero = () => {
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5 }}
-                    className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-sm font-medium mb-8"
+                    className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-medium mb-8"
                 >
                     <Sparkles className="h-4 w-4" />
-                    <span>Available for New Opportunities</span>
+                    <span>{t('hero.available')}</span>
                 </motion.div>
 
                 <motion.h1
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
-                    className="text-6xl md:text-8xl font-bold tracking-tight text-gray-900 mb-8"
+                    className="text-6xl md:text-8xl font-bold tracking-tight text-gray-900 dark:text-white mb-8"
                 >
-                    Building Digital <br />
+                    {t('hero.title_prefix')} <br />
                     <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                        Masterpieces
+                        {t('hero.title_suffix')}
                     </span>
                 </motion.h1>
 
@@ -37,11 +40,9 @@ export const Hero = () => {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.4 }}
-                    className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed"
+                    className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed"
                 >
-                    Hi, I'm <span className="font-semibold text-gray-900">Sif Yacine</span>.
-                    A Software Engineer crafting high-performance mobile apps,
-                    robust backend systems, and intelligent AI solutions.
+                    {t('hero.description').replace('{name}', 'Sif Yacine')}
                 </motion.p>
 
                 <motion.div
@@ -56,7 +57,7 @@ export const Hero = () => {
                         href="#projects"
                         className="w-full sm:w-auto px-10 py-5 bg-blue-600 text-white rounded-2xl font-bold shadow-xl shadow-blue-500/20 hover:bg-blue-700 transition-all text-lg"
                     >
-                        View My Projects
+                        {t('hero.view_projects')}
                     </motion.a>
                     <motion.a
                         whileHover={{ scale: 1.05, y: -2 }}
@@ -64,17 +65,17 @@ export const Hero = () => {
                         href="/Sif_Yacine_Resume__english.pdf"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full sm:w-auto px-10 py-5 bg-white text-gray-900 border border-gray-200 rounded-2xl font-bold hover:border-blue-600 hover:text-blue-600 transition-all text-lg shadow-sm"
+                        className="w-full sm:w-auto px-10 py-5 bg-white dark:bg-gray-900 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-800 rounded-2xl font-bold hover:border-blue-600 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all text-lg shadow-sm"
                     >
-                        Preview Resume
+                        {t('hero.preview_resume')}
                     </motion.a>
                     <motion.a
                         whileHover={{ scale: 1.05, y: -2 }}
                         whileTap={{ scale: 0.98 }}
-                        href="mailto:sif.yacine@email.com"
-                        className="w-full sm:w-auto px-10 py-5 bg-gray-50 text-gray-600 rounded-2xl font-bold hover:bg-gray-100 transition-all text-lg"
+                        href="mailto:sifyacine2003@gmail.com"
+                        className="w-full sm:w-auto px-10 py-5 bg-gray-50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 rounded-2xl font-bold hover:bg-gray-100 dark:hover:bg-gray-800 transition-all text-lg"
                     >
-                        Get in Touch
+                        {t('hero.get_in_touch')}
                     </motion.a>
                 </motion.div>
 
@@ -87,7 +88,7 @@ export const Hero = () => {
                     <div className="flex flex-col items-center space-y-2">
                         <div className="flex items-center text-sm text-gray-400 mb-4">
                             <MapPin className="h-4 w-4 mr-1" />
-                            <span>Based in Algeria</span>
+                            <span>{t('hero.location')}</span>
                         </div>
                         <motion.div
                             animate={{ y: [0, 10, 0] }}
